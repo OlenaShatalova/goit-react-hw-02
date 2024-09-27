@@ -1,0 +1,11 @@
+.feedback_container ul {
+  margin-bottom: 35px;
+}
+.feedback_container li {
+  margin-bottom: 15px;
+}
+
+.feedback_container span {
+  display: block;
+  margin-bottom: 15px;
+}

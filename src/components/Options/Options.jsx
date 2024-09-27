@@ -1,12 +1,16 @@
 import styles from './Options.module.css';
 
-const Options = () => {
+const Options = ({ updateFeedback, resetFeedBack, totalFeedback }) => {
   return (
-    <div className={styles.option_container}>
-      <button type="button">Good</button>
-      <button type="button">Neutral</button>
-      <button type="button">Bad</button>
-      <button type="button">Reset</button>
+    <div className={styles.options_container}>
+      <button onClick={() => updateFeedback('good')}>Good</button>
+      <button onClick={() => updateFeedback('neutral')}>Neutral</button>
+      <button onClick={() => updateFeedback('bad')}>Bad</button>
+      {Boolean(totalFeedback) && (
+        <button data-reset onClick={resetFeedBack}>
+          Reset
+        </button>
+      )}
     </div>
   );
 };

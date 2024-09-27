@@ -1,14 +1,18 @@
-const Feedback = () => {
+import styles from './Feedback.module.css';
+
+const Feedback = ({ feedBack, totalFeedback }) => {
+  const { good, neutral, bad } = feedBack;
+
   return (
-    <>
+    <div className={styles.feedback_container}>
       <ul>
-        <li key="Good">Good : 3</li>
-        <li key="Neutral">Neutral : 1</li>
-        <li key="Bad">Bad : 1</li>
+        <li>Good : {good}</li>
+        <li>Neutral : {neutral}</li>
+        <li>Bad : {bad}</li>
       </ul>
-      <span style={{ display: 'block' }}>Total {5}</span>
-      <span>Positive: 80%</span>
-    </>
+      <span>Total: {totalFeedback}</span>
+      <span>Positive: {Math.round((good / totalFeedback) * 100)}%</span>
+    </div>
   );
 };
 
