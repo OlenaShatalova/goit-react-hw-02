@@ -8,7 +8,13 @@ import './App.css';
 
 function App() {
   const [feedBack, setFeedBack] = useState(() => {
-    return JSON.parse(localStorage.getItem('saved-feedbacks')) ?? 0;
+    return (
+      JSON.parse(localStorage.getItem('saved-feedbacks')) ?? {
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      }
+    );
   });
 
   const updateFeedback = feedbackType => {
@@ -16,6 +22,7 @@ function App() {
   };
 
   const totalFeedback = feedBack.good + feedBack.neutral + feedBack.bad;
+  const positiveFeedback = Math.round((feedBack.good / totalFeedback) * 100);
 
   const resetFeedBack = () => {
     setFeedBack({ good: 0, neutral: 0, bad: 0 });
@@ -34,7 +41,11 @@ function App() {
         totalFeedback={totalFeedback}
       />
       {totalFeedback ? (
-        <Feedback feedBack={feedBack} totalFeedback={totalFeedback} />
+        <Feedback
+          feedBack={feedBack}
+          totalFeedback={totalFeedback}
+          positiveFeedback={positiveFeedback}
+        />
       ) : (
         <Notification />
       )}
